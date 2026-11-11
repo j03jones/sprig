@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m unittest discover -s tests -t .
+      - name: Web app scaling matches the Python library
+        if: hashFiles('web/data/recipes.json') != ''
+        run: python tools/parity_check.py
+
+  # Click through the phone web app in a real (headless) browser: the built-in library, offline use,
+  # meal plan, shopping list, What can I make?, collections, the on-demand library, and the
+  # signed-in screens against a fake server.
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright
+      - run: python -m playwright install --with-deps chromium
+      - name: Web app, signed out (including offline)
+        run: python tools/e2e_web.py
+      - name: Web app, signed in (fake server)
+        run: python tools/e2e_cloud.py

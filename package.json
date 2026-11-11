@@ -1,0 +1,22 @@
+{
+  "name": "sprig",
+  "version": "0.20.0",
+  "private": true,
+  "description": "Sprig: a recipe app for the web, iOS and Android",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "scripts": {
+    "serve": "python3 -m http.server 8000 -d web",
+    "sync": "cap sync",
+    "android": "cap sync android && cap open android",
+    "ios": "cap sync ios && cap open ios",
+    "assets": "python3 tools/make_icons.py"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.3",
+    "@capacitor/core": "^6.2.3",
+    "@capacitor/ios": "^6.2.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.3"
+  }
+}

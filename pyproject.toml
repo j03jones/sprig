@@ -1,0 +1,10 @@
+[project]
+name = "sprig"
+version = "0.20.0"
+description = "Sprig recipe tooling: MealMaster import, scaling, and the data export for the web and mobile app"
+requires-python = ">=3.9"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+dependencies = []
+
+[tool.setuptools]
+packages = ["recipelib"]

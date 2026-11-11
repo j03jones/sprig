@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sprig</title>
+  <meta name="description" content="Sprig: your recipes to search, scale, plan and cook, even offline">
+  <meta name="theme-color" content="#dff3e6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15251c" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Sprig">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- loaded without blocking, and kept for offline use by the service worker -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-view="list">
+  <main id="app" aria-busy="true"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></main>
+  <nav class="tabs" id="tabs" aria-label="Main">
+    <span class="brand"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="120" fill="#12994f"/><g transform="translate(112 62) scale(2.5)"><path d="M30 145C34 100 58 60 88 28" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><path transform="translate(36.5 112) rotate(-18) scale(1)" fill="#fff" d="M0 0C8-15 30-17 42 0 30 17 8 15 0 0Z"/><path transform="translate(43 95) rotate(-140) scale(1)" fill="#fff" d="M0 0C8-15 30-17 42 0 30 17 8 15 0 0Z"/><path transform="translate(50.5 80) rotate(-5) scale(1)" fill="#ffb38a" d="M0 0C8-15 30-17 42 0 30 17 8 15 0 0Z"/><path transform="translate(60 63) rotate(-120) scale(0.95)" fill="#fff" d="M0 0C8-15 30-17 42 0 30 17 8 15 0 0Z"/><path transform="translate(70.5 48) rotate(5) scale(0.85)" fill="#fff" d="M0 0C8-15 30-17 42 0 30 17 8 15 0 0Z"/><path transform="translate(86 30) rotate(-48) scale(0.9)" fill="#fff" d="M0 0C8-15 30-17 42 0 30 17 8 15 0 0Z"/></g></svg><b>Sprig</b></span>
+    <a href="#/" data-tab="list"><span class="pillbg"></span><svg class="ico" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h9a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M17 8h2v12h-2"/><path d="M9 9h5M9 12.5h4"/></svg><span>Recipes</span></a>
+    <a href="#/starred" data-tab="starred"><span class="pillbg"></span><svg class="ico" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 17l-5.3 2.8 1.1-5.9L3.5 9.8l5.9-.8z"/></svg><span>Starred</span></a>
+    <a href="#/plan" data-tab="plan"><span class="pillbg"></span><svg class="ico" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4M8 14h3M8 17h6"/></svg><span>Plan</span></a>
+    <a href="#/new" data-tab="new"><span class="pillbg"></span><svg class="ico" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>Add</span></a>
+    <a href="#/settings" data-tab="settings"><span class="pillbg"></span><svg class="ico" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg><span>Settings</span></a>
+  </nav>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="pad">This app needs JavaScript.</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
