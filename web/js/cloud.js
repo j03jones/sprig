@@ -108,6 +108,7 @@ export async function signUp({ email, password, displayName, inviteCode }) {
     }
     // The database refuses bad or missing invite codes; Supabase reports that as a generic server error.
     if (err.status >= 500 || /database error/i.test(err.message)) {
+      if (!inviteCode) throw new CloudError('Enter the invite code you were given, or ask for one below.', err.status);
       throw new CloudError('That invite code is not valid, has been used up, or the restaurant has no free seats.', err.status);
     }
     throw err;

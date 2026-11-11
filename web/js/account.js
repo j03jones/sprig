@@ -191,7 +191,8 @@ export function accountCard(ctx) {
       if (mode === 'up') {
         if (!name.value.trim()) { msg.textContent = 'Enter your first name.'; name.focus(); return; }
         if (pass.value.length < 8) { msg.textContent = 'Use a password of at least 8 characters.'; return; }
-        if (!open && !(ctx.joinCode || code.value.trim())) { msg.textContent = 'Enter the invite code you were given, or ask for one below.'; return; }
+        // A blank code is still sent: the database lets the administrator's own email in without one, and
+        // refuses everyone else (cloud.signUp turns that into "Enter the invite code you were given").
       }
       go.disabled = true;
       msg.textContent = mode === 'in' ? 'Signing in…' : 'Creating your account…';
