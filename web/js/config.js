@@ -1,8 +1,7 @@
-// Public connection details for Sprig's hosted database (Supabase). The publishable key is designed to
-// be public: the access rules live in the database (supabase/schema.sql). NEVER put the secret /
-// service_role key here.
+// Public connection details for Sprig's hosted database (Supabase project "sprig"). The publishable key
+// is designed to be public: the access rules live in the database (supabase/schema.sql). NEVER put the
+// secret / service_role key here.
 //
-// Both are empty until Sprig has its own Supabase project (see supabase/README.md): the app then runs
-// as an on-device recipe box, and the sign-in screens say accounts are not switched on yet.
-export const SUPABASE_URL = '';
-export const SUPABASE_KEY = '';
+// Leave both empty to run Sprig as an on-device recipe box with sign-in switched off.
+export const SUPABASE_URL = 'https://pabvzxxrwolskyprvmad.supabase.co';
+export const SUPABASE_KEY = 'sb_publishable_CJjmDQwPEHmSgDFPZz8oyA_kbRuk-2q';

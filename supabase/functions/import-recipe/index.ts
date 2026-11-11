@@ -3,7 +3,11 @@
 // with credit and a link back (web/js/webimport.js). Browsers can't read other sites directly, which is
 // why this runs on the server. Nothing is stored here.
 //
-// Deploy:  supabase functions deploy import-recipe      (JWT verification stays ON: signed-in users only)
+// Deploy:  supabase functions deploy import-recipe      (JWT verification stays ON)
+// The platform's JWT check also lets through callers that only hold the app's public key, so the function
+// asks Supabase Auth itself whether the caller is a signed-in person.
+const URL_ = Deno.env.get('SUPABASE_URL')!;
+const ANON = Deno.env.get('SUPABASE_ANON_KEY')!;
 const MAX_BYTES = 5 * 1024 * 1024;
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -12,6 +16,15 @@ const CORS = {
 };
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { ...CORS, 'Content-Type': 'application/json' } });
+
+async function signedIn(req: Request): Promise<boolean> {
+  const auth = req.headers.get('Authorization') || '';
+  if (!/^Bearer\s+\S+/i.test(auth)) return false;
+  try {
+    const res = await fetch(`${URL_}/auth/v1/user`, { headers: { apikey: ANON, Authorization: auth } });
+    return res.ok;
+  } catch { return false; }
+}
 
 function allowedUrl(raw: string): URL | null {
   let u: URL;
@@ -53,6 +66,7 @@ const pick = (o: Record<string, unknown>) => Object.fromEntries(KEEP.filter((k) 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS });
   if (req.method !== 'POST') return json({ error: 'Use POST.' }, 405);
+  if (!(await signedIn(req))) return json({ error: 'Please sign in to import a recipe from a web page.' }, 401);
   let url: URL | null = null;
   try { url = allowedUrl(String((await req.json()).url || '').trim()); } catch { /* bad body */ }
   if (!url) return json({ error: 'Please enter the address of a public recipe page (https://...).' }, 400);

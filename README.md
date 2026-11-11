@@ -49,9 +49,11 @@ mentions a time, and small animations that switch off when the device asks for r
 
 ## Accounts
 
-`web/js/config.js` is empty until Sprig has its own Supabase project, so sign-in is switched off and the
-app runs as an on-device recipe box. `supabase/README.md` has the steps to create the database; then put
-the project URL and publishable key in `config.js`.
+Sprig has its own Supabase project (`sprig`, connection details in `web/js/config.js`, publishable key only).
+It is separate from the Recipe Library database: no accounts or recipes are shared between the two.
+Sign-up is by invitation until the administrator opens it in Admin tools > Sign-up. `supabase/README.md`
+explains the database, the three edge functions and the email setup. Emptying the two values in
+`config.js` switches sign-in off and leaves an on-device recipe box.
 
 ## Tests
 
